@@ -1,0 +1,130 @@
+// Prisma Schema for MongoDB (IQ-Assets)
+// Requested deliverable for SMK IT Ibnul Qayyim
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  role      Role     @default(STAFF)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bookings     Booking[]
+  transactions Transaction[]
+}
+
+enum Role {
+  ADMIN
+  STAFF
+  TEACHER
+  STUDENT
+}
+
+model Asset {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  assetCode    String   @unique // Generated unique code for QR
+  name         String
+  category     String   // e.g., "Elektronik", "Furnitur", "Buku / Perpustakaan"
+  location     String   // Room reference
+  condition    String   @default("BAIK") // BAIK, RUSAK_RINGAN, RUSAK_BERAT
+  purchaseDate DateTime
+  price        Float?
+  
+  // Specific fields for Books (KIB E)
+  isbn         String?
+  author       String?
+  publisher    String?
+  ddc          String?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  transactions Transaction[]
+}
+
+model Consumable { // Barang Habis Pakai (BHP)
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  itemCode     String   @unique
+  name         String
+  category     String
+  unit         String   // e.g., "pcs", "box", "rim"
+  stock        Int      @default(0)
+  reorderPoint Int      @default(10)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  logs         StockLog[]
+}
+
+model StockLog {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  consumableId String   @db.ObjectId
+  consumable   Consumable @relation(fields: [consumableId], references: [id])
+  type         LogType  // IN, OUT
+  quantity     Int
+  remarks      String?
+  date         DateTime @default(now())
+}
+
+enum LogType {
+  IN
+  OUT
+}
+
+model Room {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String   // e.g., "Lab RPL", "Studio Bisnis Digital"
+  capacity    Int?
+  description String?
+  
+  bookings    Booking[]
+}
+
+model Booking {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  roomId    String   @db.ObjectId
+  room      Room     @relation(fields: [roomId], references: [id])
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id])
+  startTime DateTime
+  endTime   DateTime
+  purpose   String
+  status    BookingStatus @default(PENDING)
+  
+  createdAt DateTime @default(now())
+}
+
+enum BookingStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+model Transaction {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  assetId    String   @db.ObjectId
+  asset      Asset    @relation(fields: [assetId], references: [id])
+  borrowerId String   @db.ObjectId
+  borrower   User     @relation(fields: [borrowerId], references: [id])
+  borrowDate DateTime @default(now())
+  returnDate DateTime?
+  dueDate    DateTime
+  status     TxStatus @default(BORROWED)
+}
+
+enum TxStatus {
+  BORROWED
+  RETURNED
+  LATE
+}

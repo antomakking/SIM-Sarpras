@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Background & Theme Colors -->
+    <!-- Base Slate Blue of SMK IT Ibnul Qayyim -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&amp;family=Noto+Sans+Arabic:wght@700;800;900&amp;display=swap');
+      .star-bg { fill: #5b7f9d; }
+      .border-line { fill: none; stroke: #ffffff; stroke-linejoin: round; stroke-linecap: round; }
+      .logo-text-title {
+        font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 800;
+        fill: #ffffff;
+        text-anchor: middle;
+      }
+      .logo-text-arabic {
+        font-family: 'Noto Sans Arabic', 'Amiri', 'Traditional Arabic', 'Scheherazade New', 'Tahoma', Arial, sans-serif;
+        font-weight: 800;
+        fill: #ffffff;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+
+  <!-- Main 8-Pointed Star (Rub el Hizb) Outer Shape with Solid Slate Blue Fill -->
+  <polygon 
+    class="star-bg"
+    points="200,10 256.45,56.12 334.35,65.65 343.88,143.55 390,200 343.88,256.45 334.35,334.35 256.45,343.88 200,390 143.55,343.88 65.65,334.35 56.12,256.45 10,200 56.12,143.55 65.65,65.65 143.55,56.12"
+  />
+
+  <!-- Outer Double White Border Line (Outer Stroke) -->
+  <polygon 
+    class="border-line" 
+    stroke-width="5"
+    points="200,15 253.94,59.04 328.32,68.14 337.42,142.52 381.46,196.46 337.42,250.40 328.32,324.78 253.94,333.88 200,377.92 146.06,333.88 71.68,324.78 62.58,250.40 18.54,196.46 62.58,142.52 71.68,68.14 146.06,59.04"
+  />
+
+  <!-- Inner Double White Border Line (Inner Stroke) -->
+  <polygon 
+    class="border-line" 
+    stroke-width="3"
+    points="200,34 244.40,70.18 305.51,77.66 313.00,138.77 349.19,183.18 313.00,227.59 305.51,288.70 244.40,296.18 200,332.36 155.60,296.18 94.49,288.70 87.00,227.59 50.81,183.18 87.00,138.77 94.49,77.66 155.60,70.18"
+  />
+
+  <!-- Top Text: SMK ISLAM TERPADU -->
+  <text x="200" y="106" class="logo-text-title" font-size="19" letter-spacing="0.5">SMK ISLAM TERPADU</text>
+  
+  <!-- Top Text: IBNUL QAYYIM -->
+  <text x="200" y="138" class="logo-text-title" font-size="27" letter-spacing="1.2">IBNUL QAYYIM</text>
+
+  <!-- Center Graphic: Symmetrical Open Book Icon -->
+  <g transform="translate(200, 204)" fill="#ffffff">
+    <!-- Left Page Outline & Fill -->
+    <path d="M -8,-44 C -22,-44 -52,-38 -64,-28 C -68,-25 -70,-20 -70,-14 L -70,26 C -70,33 -65,39 -58,40 C -48,41 -26,38 -8,46 L -8,32 C -22,25 -44,27 -54,26 C -56,26 -57,24 -57,22 L -57,-11 C -57,-15 -54,-18 -50,-20 C -40,-26 -18,-29 -8,-29 Z" />
+    
+    <!-- Right Page Outline & Fill -->
+    <path d="M 8,-44 C 22,-44 52,-38 64,-28 C 68,-25 70,-20 70,-14 L 70,26 C 70,33 65,39 58,40 C 48,41 26,38 8,46 L 8,32 C 22,25 44,27 54,26 C 56,26 57,24 57,22 L 57,-11 C 57,-15 54,-18 50,-20 C 40,-26 18,-29 8,-29 Z" />
+    
+    <!-- Inner Left Page Surface -->
+    <path d="M -12,-37 C -26,-37 -48,-31 -52,-26 L -52,14 C -45,14 -26,13 -12,19 Z" fill-opacity="0.95" />
+    
+    <!-- Inner Right Page Surface -->
+    <path d="M 12,-37 C 26,-37 48,-31 52,-26 L 52,14 C 45,14 26,13 12,19 Z" fill-opacity="0.95" />
+
+    <!-- Center Spine Line -->
+    <rect x="-2.5" y="-40" width="5" height="84" rx="2" fill="#5b7f9d" />
+  </g>
+
+  <!-- Bottom Arabic Text: مدرسة ابن القيم -->
+  <text x="200" y="303" class="logo-text-arabic" font-size="34" letter-spacing="1" direction="rtl">مدرسة ابن القيم</text>
+</svg>

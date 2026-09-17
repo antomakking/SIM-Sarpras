@@ -1,0 +1,6 @@
+{
+  "name": "IQ-Assets",
+  "description": "Asset Management System for SMK IT Ibnul Qayyim",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
